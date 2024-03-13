@@ -1,0 +1,17 @@
+Properties:
+  # When set to true, the hard-coded collisions created by ProjectKorra
+  # and other addons will be removed.
+  DisableCoreCollisions: false
+
+  # What file the collisions will be loaded from. This allows you to
+  # create multiple collision files to switch between.
+  CollisionFile: "collisions.txt"
+
+  # This is a temporary config option while the plugin is in beta
+  # When true, the plugin will output all collisions registered
+  Verbose: false
+
+  # DO NOT TOUCH THIS OPTION IF YOU DO NOT KNOW WHAT IT MEANS
+  # The byte size of the buffer used to read the collision file
+  # This should rarely need to be touched, if at all
+  BufferSize: 8000

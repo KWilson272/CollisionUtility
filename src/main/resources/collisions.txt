@@ -1,0 +1,14 @@
+# -- Group Declarations --
+Group "BasicAbilities" {AirSwipe, EarthBlast, FireBlast, WaterManipulation}
+Group "LargeAbilities" {AirSweep, EarthSmash, FireBlastCharged, FireKick, FireSpin, FireWheel}
+Group "SpoutAbilities" {AirSpout, WaterSpout}
+Group "ShieldableAbilities" {AirSwipe, EarthBlast, EarthSmash, FireBlast, FireSpin, FireBall, FireWheel, WaterManipulation, IceSpikeBlast, IceBlast}
+
+# -- Collision Declarations --
+$BasicAbilities = $BasicAbilities
+$BasicAbilities > $SpoutAbilities
+$LargeAbilities > $SpoutAbilities
+$LargeAbilities > $LargeAbilities
+
+FireShield > $ShieldableAbilities
+AirShield > $ShieldableAbilities
