@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "me.kwilson272"
-version = "BETA-1.0.0"
+version = "BETA-1.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17

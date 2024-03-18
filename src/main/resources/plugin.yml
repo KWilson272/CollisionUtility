@@ -1,7 +1,7 @@
 name: CollisionUtility
 author: KWilson272
 main: me.kwilson272.collisionutility.CollisionUtility
-version: BETA-1.0.0
+version: BETA-1.1.0
 api-version: 1.20
 description: ProjectKorra addon plugin to more easily customize collisions
 depend: [ProjectKorra]
