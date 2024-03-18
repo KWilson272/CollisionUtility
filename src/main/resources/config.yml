@@ -1,7 +1,7 @@
 Properties:
   # When set to true, the hard-coded collisions created by ProjectKorra
   # and other addons will be removed.
-  DisableCoreCollisions: false
+  DisableCoreCollisions: true
 
   # What file the collisions will be loaded from. This allows you to
   # create multiple collision files to switch between.

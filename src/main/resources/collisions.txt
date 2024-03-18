@@ -1,8 +1,8 @@
 # -- Group Declarations --
-Group "BasicAbilities" {AirSwipe, EarthBlast, FireBlast, WaterManipulation}
+Group "BasicAbilities" {AirSwipe, EarthBlast, FireBlast, WaterManipulation, IceSpikeBlast, IceBlast}
 Group "LargeAbilities" {AirSweep, EarthSmash, FireBlastCharged, FireKick, FireSpin, FireWheel}
 Group "SpoutAbilities" {AirSpout, WaterSpout}
-Group "ShieldableAbilities" {AirSwipe, EarthBlast, EarthSmash, FireBlast, FireSpin, FireBall, FireWheel, WaterManipulation, IceSpikeBlast, IceBlast}
+Group "ShieldableAbilities" {$BasicAbilities}
 
 # -- Collision Declarations --
 $BasicAbilities = $BasicAbilities
@@ -12,3 +12,15 @@ $LargeAbilities > $LargeAbilities
 
 FireShield > $ShieldableAbilities
 AirShield > $ShieldableAbilities
+
+FireKick x AirSweep
+FireWheel x AirSweep
+FireSpin x AirSweep
+FireSpin x FireBlastCharged
+FireSpin x EarthBlast
+
+WaterManipulation x AirSweep
+WaterManipulation x WaterManipulation
+
+AirSwipe x AirSweep
+
