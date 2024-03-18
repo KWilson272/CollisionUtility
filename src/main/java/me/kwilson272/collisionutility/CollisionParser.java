@@ -23,7 +23,7 @@ import java.util.logging.Level;
 
 public class CollisionParser {
 
-    private static final char[] OPERATORS = {'>', '<', '=', 'x'};
+    private static final char[] OPERATORS = {'>', '<', '=', 'x', '~'};
 
     public enum ParseResult {
 
@@ -52,7 +52,7 @@ public class CollisionParser {
 
     public CollisionParser(CollisionUtility plugin) {
         this.plugin = plugin;
-        
+
         plugin.getLogger().log(Level.INFO, "Initializing Collisions...");
 
         plugin.getDataFolder().mkdir();
@@ -247,11 +247,23 @@ public class CollisionParser {
         return ParseResult.SUCCESSFUL_PARSE;
     }
 
-    private void setupCollision(String operator, String op1, String op2, Map<String, List<String>> groups) {
-        if (verbose) {
-            plugin.getLogger().log(Level.INFO, "Collision info received: \"" + op1 + "\" " + operator + " \"" + op2 + "\" " );
+    // For abilities with duplicated getName() values
+    private CoreAbility getFromClass(String abilityName) {
+        switch (abilityName) {
+            case "FireBlast" -> {
+                return CoreAbility.getAbility(FireBlast.class);
+            }
+            case "FireBlastCharged" -> {
+                return CoreAbility.getAbility(FireBlastCharged.class);
+            }
+            case "IceSpikeBlast" -> {
+                return CoreAbility.getAbility(IceSpikeBlast.class);
+            }
         }
+        return null;
+    }
 
+    private void setupCollision(String operator, String op1, String op2, Map<String, List<String>> groups) {
         if (op1.startsWith("$")) {
             String groupName = op1.substring(1);
             List<String> abilityNames = groups.get(groupName);
@@ -290,6 +302,14 @@ public class CollisionParser {
             return;
         }
 
+        if (operator.equals("x")) {
+            if (removeCollision(first, second) && verbose) {
+                plugin.getLogger().log(Level.INFO, "Removed collision between: " + op1 + " and " + op2);
+            }
+            return;
+        }
+
+        // For "~"
         boolean removeFirst = false;
         boolean removeSecond = false;
         switch (operator) {
@@ -308,19 +328,19 @@ public class CollisionParser {
         }
     }
 
-    // For abilities with duplicated getName() values
-    private CoreAbility getFromClass(String abilityName) {
-        switch (abilityName) {
-            case "FireBlast" -> {
-                return CoreAbility.getAbility(FireBlast.class);
-            }
-            case "FireBlastCharged" -> {
-                return CoreAbility.getAbility(FireBlastCharged.class);
-            }
-            case "IceSpikeBlast" -> {
-                return CoreAbility.getAbility(IceSpikeBlast.class);
-            }
-        }
-        return null;
+    /**
+     * Removes a collision from the collision manager where the ability pair matches
+     * the provided abilities. This method does not respect the order of the collision.
+     *
+     * @param first a CoreAbility that makes up part of the Collision pair
+     * @param second a CoreAbility that makes up part of the Collision pair
+     */
+    private boolean removeCollision(CoreAbility first, CoreAbility second) {
+        return ProjectKorra.getCollisionManager().getCollisions().removeIf(collision -> {
+            CoreAbility collisionFirst = collision.getAbilityFirst();
+            CoreAbility collisionSecond = collision.getAbilitySecond();
+            return ((collisionFirst.equals(first) && collisionSecond.equals(second))
+                    || (collisionSecond.equals(first) && collisionFirst.equals(second)));
+        });
     }
 }
