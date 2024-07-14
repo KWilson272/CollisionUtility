@@ -1,13 +1,15 @@
 # CollisionUtility
-CollisionUtility is a small addon for the ProjectKorra plugin. This plugin allows you to configure the ability collisions using straightforward and intuitive syntax.
+CollisionUtility is a small addon for the ProjectKorra plugin. This plugin allows you to configure 
+the ability collisions using straightforward and intuitive syntax.
 
 ## Installation
 To install this plugin, place the jar into your server's `plugins/` folder
 
 ## Requirements and Compatibility
-This plugin was made for the following versions. It is not guaranteed to work on other versions, however it is quite likely that it will.
-- Spigot `1.20.1`
-- ProjectKorra `1.11.2`
+This plugin was made for the following versions. It is not guaranteed to work on other versions, 
+however it is quite likely that it will.
+- Spigot `1.21`
+- ProjectKorra `1.11.3`
 
 ## Syntax
 Lines that start with `#` are comment lines, and will not be read by the parser.
