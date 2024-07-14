@@ -14,7 +14,7 @@ public class CollisionUtility extends JavaPlugin {
 
         Bukkit.getPluginManager().registerEvents(new ReloadListener(this), this);
 
-        // Run later to ensure all addons have loaded their collisions
+        // Run later to ensure all addons have loaded their abilities
         Bukkit.getScheduler().runTaskLater(this, () -> new CollisionParser(this), 2);
         getLogger().log(Level.INFO, "CollisionUtility by KWilson272 has been enabled!");
     }

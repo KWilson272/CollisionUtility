@@ -19,8 +19,4 @@ FireSpin x AirSweep
 FireSpin x FireBlastCharged
 FireSpin x EarthBlast
 
-WaterManipulation x AirSweep
 WaterManipulation x WaterManipulation
-
-AirSwipe x AirSweep
-

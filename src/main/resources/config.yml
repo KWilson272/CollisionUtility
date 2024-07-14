@@ -7,7 +7,6 @@ Properties:
   # create multiple collision files to switch between.
   CollisionFile: "collisions.txt"
 
-  # This is a temporary config option while the plugin is in beta
   # When true, the plugin will output all collisions registered
   Verbose: false
 

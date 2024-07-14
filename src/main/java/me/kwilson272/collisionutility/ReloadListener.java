@@ -16,6 +16,5 @@ public class ReloadListener implements Listener {
     @EventHandler
     private void onReload(BendingReloadEvent event) {
         collisionUtility.reload();
-
     }
 }

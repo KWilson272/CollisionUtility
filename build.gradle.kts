@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "me.kwilson272"
-version = "BETA-1.1.0"
+version = "1.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -12,11 +12,11 @@ java {
 
 repositories {
     mavenCentral()
+    mavenLocal()
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    maven("https://jitpack.io")
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
-    compileOnly("com.github.ProjectKorra:ProjectKorra:v1.11.2")
+    compileOnly("org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT")
+    compileOnly("com.projectkorra:core:1.11.3")
 }

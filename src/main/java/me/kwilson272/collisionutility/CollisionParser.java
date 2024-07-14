@@ -5,6 +5,8 @@ import com.projectkorra.projectkorra.ability.CoreAbility;
 import com.projectkorra.projectkorra.ability.util.Collision;
 import com.projectkorra.projectkorra.firebending.FireBlast;
 import com.projectkorra.projectkorra.firebending.FireBlastCharged;
+import com.projectkorra.projectkorra.waterbending.WaterSpout;
+import com.projectkorra.projectkorra.waterbending.WaterSpoutWave;
 import com.projectkorra.projectkorra.waterbending.ice.IceSpikeBlast;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -65,14 +67,7 @@ public class CollisionParser {
 
         String fileName = config.getString("Properties.CollisionFile", "collisions.txt");
         File file = new File(plugin.getDataFolder() + File.separator + fileName);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                plugin.getLogger().log(Level.WARNING, "Unable to create the file: " + fileName);
-                e.printStackTrace();
-            }
-        } else {
+        if (file.exists()) {
             int bufferSize = plugin.getConfig().getInt("Properties.BufferSize", 8000);
             loadCollisions(file, bufferSize);
         }
@@ -247,22 +242,6 @@ public class CollisionParser {
         return ParseResult.SUCCESSFUL_PARSE;
     }
 
-    // For abilities with duplicated getName() values
-    private CoreAbility getFromClass(String abilityName) {
-        switch (abilityName) {
-            case "FireBlast" -> {
-                return CoreAbility.getAbility(FireBlast.class);
-            }
-            case "FireBlastCharged" -> {
-                return CoreAbility.getAbility(FireBlastCharged.class);
-            }
-            case "IceSpikeBlast" -> {
-                return CoreAbility.getAbility(IceSpikeBlast.class);
-            }
-        }
-        return null;
-    }
-
     private void setupCollision(String operator, String op1, String op2, Map<String, List<String>> groups) {
         if (op1.startsWith("$")) {
             String groupName = op1.substring(1);
@@ -290,13 +269,13 @@ public class CollisionParser {
             return;
         }
 
-        CoreAbility first = getFromClass(op1);
-        CoreAbility second = getFromClass(op2);
-        if (first == null && (first = CoreAbility.getAbility(op1)) == null) {
+        CoreAbility first = parseCoreAbility(op1);
+        CoreAbility second = parseCoreAbility(op2);
+        if (first == null) {
             plugin.getLogger().log(Level.WARNING, "Cannot find an ability with the name:" +
                     " \"" + op1 + "\"");
             return;
-        } else if (second == null && (second = CoreAbility.getAbility(op2)) == null) {
+        } else if (second == null) {
             plugin.getLogger().log(Level.WARNING, "Cannot find an ability with the name: " +
                     "\"" + op2 + "\"");
             return;
@@ -309,7 +288,7 @@ public class CollisionParser {
             return;
         }
 
-        // For "~"
+        // Default operator is "~"
         boolean removeFirst = false;
         boolean removeSecond = false;
         switch (operator) {
@@ -325,6 +304,30 @@ public class CollisionParser {
 
         if (verbose) {
             plugin.getLogger().log(Level.INFO, "Created a collision with: " + op1 + operator + op2);
+        }
+    }
+
+    private CoreAbility parseCoreAbility(String abilityName) {
+        // Some of these need to be done manually, some abilities have duplicate getName() values
+        switch (abilityName) {
+            case "FireBlast" -> {
+                return CoreAbility.getAbility(FireBlast.class);
+            }
+            case "FireBlastCharged", "ChargedFireBlast", "CFB" -> {
+                return CoreAbility.getAbility(FireBlastCharged.class);
+            }
+            case "IceSpikeBlast" -> {
+                return CoreAbility.getAbility(IceSpikeBlast.class);
+            }
+            case "WaterSpout" -> {
+                return CoreAbility.getAbility(WaterSpout.class);
+            }
+            case "WaterWave", "WaterSpoutWave" -> {
+                return CoreAbility.getAbility(WaterSpoutWave.class);
+            }
+            default -> {
+                return CoreAbility.getAbility(abilityName);
+            }
         }
     }
 
