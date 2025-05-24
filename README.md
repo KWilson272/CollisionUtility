@@ -8,8 +8,8 @@ To install this plugin, place the jar into your server's `plugins/` folder
 ## Requirements and Compatibility
 This plugin was made for the following versions. It is not guaranteed to work on other versions, 
 however it is quite likely that it will.
-- Spigot `1.21`
-- ProjectKorra `1.11.3`
+- Spigot `1.16.5+`
+- ProjectKorra `1.12.0`
 
 ## Syntax
 Lines that start with `#` are comment lines, and will not be read by the parser.
