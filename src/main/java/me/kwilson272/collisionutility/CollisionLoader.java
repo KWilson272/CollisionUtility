@@ -5,10 +5,15 @@ import com.projectkorra.projectkorra.ability.CoreAbility;
 import com.projectkorra.projectkorra.ability.util.Collision;
 import com.projectkorra.projectkorra.firebending.FireBlast;
 import com.projectkorra.projectkorra.firebending.FireBlastCharged;
+import com.projectkorra.projectkorra.waterbending.SurgeWall;
+import com.projectkorra.projectkorra.waterbending.SurgeWave;
+import com.projectkorra.projectkorra.waterbending.Torrent;
+import com.projectkorra.projectkorra.waterbending.TorrentWave;
 import com.projectkorra.projectkorra.waterbending.WaterSpout;
 import com.projectkorra.projectkorra.waterbending.WaterSpoutWave;
 import com.projectkorra.projectkorra.waterbending.ice.IceSpikeBlast;
 
+import com.projectkorra.projectkorra.waterbending.ice.IceSpikePillar;
 import me.kwilson272.collisionutility.parser.Lexer;
 import me.kwilson272.collisionutility.parser.Parser;
 import me.kwilson272.collisionutility.parser.grammar.CollisionDeclaration;
@@ -53,9 +58,17 @@ public class CollisionLoader {
         abilityConversions.put("ChargedFireBlast", CoreAbility.getAbility(FireBlastCharged.class));
         abilityConversions.put("CFB", CoreAbility.getAbility(FireBlastCharged.class));
         abilityConversions.put("IceSpikeBlast", CoreAbility.getAbility(IceSpikeBlast.class));
+        abilityConversions.put("IceSpike", CoreAbility.getAbility(IceSpikePillar.class));
         abilityConversions.put("WaterSpout", CoreAbility.getAbility(WaterSpout.class));
         abilityConversions.put("WaterWave", CoreAbility.getAbility(WaterSpoutWave.class));
         abilityConversions.put("WaterSpoutWave", CoreAbility.getAbility(WaterSpoutWave.class));
+        abilityConversions.put("Torrent", CoreAbility.getAbility(Torrent.class));
+        abilityConversions.put("TorrentWave", CoreAbility.getAbility(TorrentWave.class));
+        abilityConversions.put("TorrentRing", CoreAbility.getAbility(TorrentWave.class));
+        abilityConversions.put("Surge", CoreAbility.getAbility(SurgeWave.class));
+        abilityConversions.put("SurgeWave", CoreAbility.getAbility(SurgeWave.class));
+        abilityConversions.put("SurgeWall", CoreAbility.getAbility(SurgeWall.class));
+        abilityConversions.put("SurgeShield", CoreAbility.getAbility(SurgeWall.class));
     }
 
     /**

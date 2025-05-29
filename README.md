@@ -23,24 +23,19 @@ This operator should be used when the first operand should remove the second ope
 after the collision.
 
 #### `<` - Usage: `Operand1 < Operand2`
-
 This operator works just like `>` The first operand will be removed by the second operand, with the
 second operand progressing after the collision.
 
 #### `=` - Usage: `Operand1 = Operand2`
-
 This operator creates a collision in which both abilities collide with each other and are removed.
 
 #### `x` - Usage: `Operand1 x Operand2`
-
 This operator is used to remove a collision. Regardless of any previous lines in the collisions 
 file, the two operands will not collide.
 
 #### `~` - Usage: `Operand1 ~ Operand2`
-
 This operator is used when you would like a collision to take place, but neither ability should be
-removed. This may be useful when you want an ability to *interact* with another ability, but neither
-should be removed. 
+removed. This may be useful when you want an ability to just *interact* with another ability.
 
 ### Collision Declarations
 Collisions are declared using the following syntax: `Operand1 Operator Operand2`. Operands can
@@ -72,3 +67,39 @@ collisions file:
 FireBlast will not be removed, while the other ability will.
 - `$BasicAbilities > $SpoutAbilities` - All abilities in the BasicAbilities group will collide with all abilities in the SpoutAbilities
 group. The abilities in BasicAbilities will continue progressing, while the abilities in SpoutAbilities will be removed.
+
+### Ability Aliases
+Because of the way ProjectKorra ability naming works, some abilities can only be referenced 
+for collisions using aliases. Use the following aliases to refer to certain abilities. If an ability
+is not present in the table, use its in-game name.  
+
+#### Fire
+| Ability                   | Alias            |
+|---------------------------|------------------|
+| FireBlast (Charged Form)  | FireBlastCharged |
+| FireBlast (Charged Form)  | ChargedFireBlast |
+| FireBlast (Charged Form)  | CFB              |
+| FireBlast (Standard Form) | FireBlast        |
+
+#### Water
+| Ability                 | Alias          |
+|-------------------------|----------------|
+| IceSpike (Blast Form)   | IceSpikeBlast  |
+| IceSpike (Pillar Form)  | IceSpike       |
+| IceSpike (Field Form)   | IceSpike       |
+| WaterSpout (Spout Form) | WaterSpout     |
+| WaterSpout (Wave Form)  | WaterSpoutWave |
+| WaterSpout (Wave Form)  | WaterWave      |
+| Torrent (Blast Form)    | Torrent        |
+| Torrent (Wave Form)     | TorrentWave    |
+| Torrent (Ring Form)     | TorrentRing    |
+| Surge (Wave Form)       | Surge          |
+| Surge (Wave Form)       | SurgeWave      |
+| Surge (Wall Form)       | SurgeWall      |
+| Surge (Wall Form)       | SurgeShield    |
+| WaterArms (Grapple)     | WaterArmsWhip  |
+| WaterArms (Grab)        | WaterArmsWhip  |
+| WaterArms (Pull)        | WaterArmsWhip  |
+| WaterArms (Punch)       | WaterArmsWhip  |
+
+*Some abilities may share the same alias due to PK limitations*
